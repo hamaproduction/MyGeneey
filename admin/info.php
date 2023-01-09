@@ -1,30 +1,31 @@
 <?php
-$db =mysqli_connect('localhost','root','','shop');
-if(!$db){
-    echo "database  not connect";
-
+$db = mysqli_connect('localhost', 'root', '', 'shop');
+if (!$db) {
+  echo "database  not connect";
 }
 
 
 ?>
 
 <?php
-if(isset($_GET['delete'])){
-  $ID=htmlspecialchars($_GET['delete']);
-  $query = mysqli_query($db,"DELETE FROM `object` WHere `ID`='$ID'");
-  if($query){
+if (isset($_GET['delete'])) {
+  $ID = htmlspecialchars($_GET['delete']);
+  $query = mysqli_query($db, "DELETE FROM `object` WHere `ID`='$ID'");
+  if ($query) {
     header("location:info.php");
   }
 }
 ?>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="all.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" >
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="all.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+  <title>Document</title>
 </head>
+
 <body>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
@@ -61,47 +62,48 @@ if(isset($_GET['delete'])){
     </div>
   </nav>
   <table class="table table-striped">
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>email</th>
-    <th>city</th>
-    <th>order</th>
-    <th>phone</th>
-    <th>second phone</th>
-    <th>location</th>
-    <th>Delete</th>
-    
-  </tr>
-  <?php
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>email</th>
+      <th>city</th>
+      <th>order</th>
+      <th>phone</th>
+      <th>second phone</th>
+      <th>location</th>
+      <th>NameItem</th>
+      <th>Delete</th>
 
-$conn=mysqli_connect('localhost','root','','shop');
-if($conn->connect_error){
-  die("Connection faild:".$conn->connect_error);
-}
+    </tr>
+    <?php
 
-$sql= "SELECT * FROM `object`";
-$result =$conn->query($sql);
-if($result->num_rows>0)
-{
-  while($row=$result->fetch_assoc())
-  {
-    echo "<tr><td>".$row["ID"].
-    "</td><td>".$row["name"].
-    "</td><td>".$row["email"].
-    "</td><td>".$row["city"].
-    "</td><td>".$row["number"].
-    "</td><td>".$row["phone"].
-    "</td><td>".$row["secondphone"].
-    "</td><td>".$row["location"].
-    "</td><td><a href='info.php?delete=".$row['ID']."' class='btn btn-danger'>delete</a></td></tr>";
-  }
-  echo "</table>";
-}else{
-  echo"0 result";
-}
-$conn->close();
-?>
-</table>
+    $conn = mysqli_connect('localhost', 'root', '', 'shop');
+    if ($conn->connect_error) {
+      die("Connection faild:" . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM `object` ORDER BY `object`.`ID` DESC";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        echo "<tr><td>" . $row["ID"] .
+          "</td><td>" . $row["name"] .
+          "</td><td>" . $row["email"] .
+          "</td><td>" . $row["city"] .
+          "</td><td>" . $row["number"] .
+          "</td><td>" . $row["phone"] .
+          "</td><td>" . $row["secondphone"] .
+          "</td><td>" . $row["location"] .
+          "</td><td>" . $row["Name"] .
+          "</td><td><a href='info.php?delete=" . $row['ID'] . "' class='btn btn-danger'>delete</a></td></tr>";
+      }
+      echo "</table>";
+    } else {
+      echo "0 result";
+    }
+    $conn->close();
+    ?>
+  </table>
 </body>
+
 </html>
