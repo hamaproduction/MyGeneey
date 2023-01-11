@@ -3,9 +3,10 @@ $db = mysqli_connect('localhost', 'root', '', 'shop');
 if (!$db) {
   echo "database  not connect";
 }
-
-
 ?>
+
+
+
 
 <?php
 if (isset($_GET['delete'])) {
@@ -71,7 +72,6 @@ if (isset($_GET['delete'])) {
       <th>phone</th>
       <th>second phone</th>
       <th>location</th>
-      <th>NameItem</th>
       <th>Delete</th>
 
     </tr>
@@ -82,7 +82,7 @@ if (isset($_GET['delete'])) {
       die("Connection faild:" . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM `object` ORDER BY `object`.`ID` DESC";
+    $sql = "SELECT * FROM `object`";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
@@ -94,7 +94,6 @@ if (isset($_GET['delete'])) {
           "</td><td>" . $row["phone"] .
           "</td><td>" . $row["secondphone"] .
           "</td><td>" . $row["location"] .
-          "</td><td>" . $row["Name"] .
           "</td><td><a href='info.php?delete=" . $row['ID'] . "' class='btn btn-danger'>delete</a></td></tr>";
       }
       echo "</table>";

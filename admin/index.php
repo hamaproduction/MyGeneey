@@ -114,7 +114,7 @@ if (strlen($phone) < 11) {
   <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../photo/<?php echo $GLOBALS['photo'] ?>" class="d-block w-100 h-50" alt="...">
+        <img src="../photo/<?php echo $GLOBALS['photo'] ?>" class="d-block w-100 " alt="...">
       </div>
 
     </div>
@@ -134,7 +134,7 @@ if (strlen($phone) < 11) {
     <div class="form-row ">
       <div class="form-group col-md-6">
         <p class="alret alert-white text-danger p-2 radius-5"><?php echo $errors['name']; ?></p>
-        <label for="inputEmail4">Name</label>
+        <label for="inputEmail4 ">Name</label>
         <input type="name" class="form-control" name="name" placeholder="Name">
       </div>
       <div class="form-group col-md-6">
@@ -173,7 +173,7 @@ if (strlen($phone) < 11) {
       </div>
     </div>
     </div>
-    <button type="submit" name="submit" class="btn btn-primary">Order </button>
+    <button type="submit" name="submit" onclick="show_alert();" class="btn btn-primary">Order </button>
 
   </form>
 
@@ -200,7 +200,15 @@ if (strlen($phone) < 11) {
       ?>
       </div>
   </div>
-
 </body>
+<script>
+  function show_alert() {
+
+    if (empty($city) && empty($location) && empty($name) && empty($phone))
+      alert("try agin ");
+    else
+      alert("thnak you for order itemzain haddad ");
+  }
+</script>
 
 </html>
